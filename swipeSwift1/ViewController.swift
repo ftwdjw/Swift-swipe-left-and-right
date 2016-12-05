@@ -18,6 +18,8 @@ class ViewController: UIViewController {
      //initialize left and right UI swipr gesture recognizers
      let leftSwipe = UISwipeGestureRecognizer()
      let rightSwipe = UISwipeGestureRecognizer()
+    let upSwipe = UISwipeGestureRecognizer()
+    let downSwipe = UISwipeGestureRecognizer()
     
     
    
@@ -31,10 +33,18 @@ class ViewController: UIViewController {
          testView.addGestureRecognizer(rightSwipe)
         rightSwipe.direction = .right
         
+        testView.addGestureRecognizer(upSwipe)
+        upSwipe.direction = .up
+        
+        testView.addGestureRecognizer(downSwipe)
+        downSwipe.direction = .down
+        
         testView.isUserInteractionEnabled  = true
         
         leftSwipe.addTarget(self, action: #selector(ViewController.swipedViewLeft))
         rightSwipe.addTarget(self, action: #selector(ViewController.swipedViewRight))
+         upSwipe.addTarget(self, action: #selector(ViewController.swipedViewUp))
+         downSwipe.addTarget(self, action: #selector(ViewController.swipedViewDown))
         
         print("view did load")
         
@@ -62,8 +72,23 @@ class ViewController: UIViewController {
                 self.present(tapAlert, animated: true, completion: nil)
            
             }
+    
+    func swipedViewUp(){
+        print("Swipe Up")
+        let tapAlert = UIAlertController(title: "Swiped", message: "You just swiped up", preferredStyle: UIAlertControllerStyle.alert)
+        tapAlert.addAction(UIAlertAction(title: "OK", style: .destructive, handler: nil))
+        self.present(tapAlert, animated: true, completion: nil)
         
+    }
+    func swipedViewDown(){
+        print("Swipe Down")
+        let tapAlert = UIAlertController(title: "Swiped", message: "You just swiped down", preferredStyle: UIAlertControllerStyle.alert)
+        tapAlert.addAction(UIAlertAction(title: "OK", style: .destructive, handler: nil))
+        self.present(tapAlert, animated: true, completion: nil)
         
+    }
+    
+    
  
     
 
